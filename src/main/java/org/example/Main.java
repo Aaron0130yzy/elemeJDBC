@@ -17,7 +17,7 @@ public class Main {
     private static void loginIn() {
         Scanner sc1 = new Scanner(System.in);
         boolean flag = true;
-        int id;
+        String id;
         String idNumber;
         String name;
         String pwd;
@@ -39,6 +39,7 @@ public class Main {
             System.out.println(welcomeWord1);
 
             int choice = sc1.nextInt();
+            Boolean flag2=true;
             switch (choice) {
                 case 0 -> {
                     System.out.println("感谢使用，再见");
@@ -52,6 +53,27 @@ public class Main {
 
                 }
                 case 3 -> {//todo 管理员登录
+                    AdminDao aDao=new AdminDao();
+                    Admin admin=new Admin();
+                    while (flag2){
+                        System.out.println("请输入管理员id：");
+                        id=sc1.nextLine();
+                        System.out.println("请输入管理员密码：");
+                        pwd=sc1.nextLine();
+                        admin = aDao.login(id, pwd);
+                        if (admin == null) {
+                            System.out.println("登录失败！输入0退出，输入任意键重试");
+                            if(sc1.nextLine().equals("0")){
+                                flag2=false;
+                            }
+                        } else {
+                            System.out.println("欢迎管理员" + admin.getName());
+                            flag2=false;
+                            System.out.println("管理员后续功能");
+                            //todo 管理员后续功能
+//                            aDao.showMenu();
+                        }
+                    }
 
                 }
                 case 4 -> {//todo 用户注册
