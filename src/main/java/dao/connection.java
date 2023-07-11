@@ -17,17 +17,17 @@ public class connection {
                         + "user=sa;"
                         + "password=123456;"
                         + "trustServerCertificate=true";
-        Connection con = null;//处理与特定数据库的连接
+        Connection conn = null;//处理与特定数据库的连接
 
 
         try {
-            con = DriverManager.getConnection(connectionUrl);
+            conn = DriverManager.getConnection(connectionUrl);
             System.out.println("连接成功2");
         } catch (SQLException e) {
             System.out.println("请输入正确的表名" + e);
             System.out.println("连接失败2");
         }
-        return con;
+        return conn;
     }
 
 

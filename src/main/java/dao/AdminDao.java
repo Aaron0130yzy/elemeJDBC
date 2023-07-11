@@ -15,13 +15,12 @@ import entities.*;
 
 public class AdminDao {
     PreparedStatement statement = null;
-    Connection conn = connection.getConnection();
+    Connection conn = null;
     ResultSet rs = null;
     Admin Admin;
     public Admin login(String id, String pwd) {
-        String sqlQueryLang = "SELECT DISTINCT * FROM Admin WHERE id = ? AND password = ?";
         try {//先设置占位符的值
-            statement= conn.prepareStatement(sqlQueryLang);
+            statement= conn.prepareStatement("SELECT DISTINCT * FROM Admin WHERE id = ? AND password = ?");
             statement.setString(1, id);
             statement.setString(2, pwd);
         } catch (SQLException e) {

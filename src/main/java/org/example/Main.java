@@ -57,9 +57,9 @@ public class Main {
                     Admin admin=new Admin();
                     while (flag2){
                         System.out.println("请输入管理员id：");
-                        id=sc1.nextLine();
+                        id=sc1.next();
                         System.out.println("请输入管理员密码：");
-                        pwd=sc1.nextLine();
+                        pwd=sc1.next();
                         admin = aDao.login(id, pwd);
                         if (admin == null) {
                             System.out.println("登录失败！输入0退出，输入任意键重试");
