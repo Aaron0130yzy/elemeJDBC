@@ -19,8 +19,9 @@ public class AdminDao {
     ResultSet rs = null;
     Admin Admin;
     public Admin login(String id, String pwd) {
+        String sql="SELECT DISTINCT * FROM Admin WHERE id = ? AND password = ?";
         try {//先设置占位符的值
-            statement= conn.prepareStatement("SELECT DISTINCT * FROM Admin WHERE id = ? AND password = ?");
+            statement= conn.prepareStatement(sql);
             statement.setString(1, id);
             statement.setString(2, pwd);
         } catch (SQLException e) {
