@@ -15,21 +15,23 @@ import entities.*;
 
 public class AdminDao {
     PreparedStatement statement = null;
-    Connection conn = null;
+//    Connection conn = null;
+    Connection conn;
     ResultSet rs = null;
     Admin Admin;
     public Admin login(String id, String pwd) {
-        String sql="SELECT DISTINCT * FROM Admin WHERE id = ? AND password = ?";
-        try {//先设置占位符的值
-            statement= conn.prepareStatement(sql);
-            statement.setString(1, id);
-            statement.setString(2, pwd);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+//        String sql="SELECT DISTINCT * FROM Admin WHERE id = ? AND password = ?";
+//        try {//先设置占位符的值
+//            statement= conn.prepareStatement(sql);
+//            statement.setString(1, id);
+//            statement.setString(2, pwd);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+        String sql="SELECT DISTINCT * FROM Admin WHERE id = '"+id+"' AND password = '"+pwd+"'";
         try {//进行查询
-            rs = statement.executeQuery();
+//            rs = statement.executeQuery();
+            ResultSet rs = connection.executeQuery(sql);
             if (rs.next()) {
                 Admin = new Admin();
                 Admin.setId(rs.getInt("id"));
@@ -46,18 +48,18 @@ public class AdminDao {
     public String regist(String name, String pwd) throws SQLException {
         String newId = null;
         try {
-            String sqlQueryLang = "INSERT INTO Admin(name,password) VALUES('"
-                    + name + "' , '" + pwd + "'";
+            String sqlQueryLang = "INSERT INTO Admin (name, password) VALUES ('" + name + "', '" + pwd + "');";
             connection.modify(sqlQueryLang);
-            sqlQueryLang = "SELECT id FROM Product WHERE name = '" + name;
+            sqlQueryLang = "SELECT id FROM Admin WHERE name = '" + name+"'";
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             while (rs.next()) {
-                newId = rs.getString("Id");
+                newId = rs.getString("id");
+                System.out.println("注册成功！您的ID为 " + newId + " ，请保存以用于登录");
                 // 处理查询结果
             }
 
         } catch (SQLException e) {
-            System.out.println("注册失败！");
+            System.out.println("注册失败！"+e);
         }
 
         return newId;

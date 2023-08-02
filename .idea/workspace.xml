@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="简单写了管理员登录，虽然现在还不能成功运行">
+    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="......至少连上数据库了">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,8 @@
       <workItem from="1689734744586" duration="660000" />
       <workItem from="1690431727162" duration="607000" />
       <workItem from="1690943670732" duration="1937000" />
-      <workItem from="1690945726135" duration="873000" />
+      <workItem from="1690945726135" duration="2872000" />
+      <workItem from="1690963398611" duration="924000" />
     </task>
     <task id="LOCAL-00001" summary="看起来像是搞好了">
       <created>1689045959887</created>
@@ -112,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689089503864</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="......至少连上数据库了">
+      <option name="closed" value="true" />
+      <created>1690946679889</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690946679889</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +131,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="elemeJDBC/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -133,6 +153,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="看起来像是搞好了" />
     <MESSAGE value="简单写了管理员登录，虽然现在还不能成功运行" />
-    <option name="LAST_COMMIT_MESSAGE" value="简单写了管理员登录，虽然现在还不能成功运行" />
+    <MESSAGE value="......至少连上数据库了" />
+    <option name="LAST_COMMIT_MESSAGE" value="......至少连上数据库了" />
   </component>
 </project>

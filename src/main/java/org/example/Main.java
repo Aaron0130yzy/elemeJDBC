@@ -69,7 +69,7 @@ public class Main {
                         } else {
                             System.out.println("欢迎管理员" + admin.getName());
                             flag2=false;
-                            System.out.println("管理员后续功能");
+                            System.out.println("(管理员后续功能)");
                             //todo 管理员后续功能
 //                            aDao.showMenu();
                         }
@@ -82,7 +82,14 @@ public class Main {
                 case 5 -> {//todo 商家注册
 
                 }
-                case 6 -> {//todo 管理员注册
+                case 6 -> {//管理员注册
+                    AdminDao aDao=new AdminDao();
+                    Admin admin=new Admin();
+                    System.out.println("请输入要注册的名称：");
+                    name=sc1.next();
+                    System.out.println("请输入密码：");
+                    pwd=sc1.next();
+                    aDao.regist(name,pwd);
 
 
                 }
