@@ -17,16 +17,14 @@ public class Main {
     private static void loginIn() {
         Scanner sc1 = new Scanner(System.in);
         boolean flag = true;
-        boolean flag2=true;
+        boolean flag2;
         int choice;
         while (flag) {
             String welcomeLine = "==============================";
             String welcomeWord1 = """
                     欢迎使用饿了么外卖平台
-                    用户登录请按1\t商家登录请按2
-                    管理员登录请按3
-                    用户注册请按4\t商家注册请按5
-                    管理员注册请按6
+                    用户登录请按1  商家登录请按2  管理员登录请按3
+                    用户注册请按4  商家注册请按5  管理员注册请按6
                     退出请按0""";
             System.out.println(welcomeLine);
             System.out.println(welcomeWord1);
@@ -39,31 +37,29 @@ public class Main {
                     flag = false;
 
                 }
-                case 1 -> {//todo 用户登录
+                case 1 -> {//用户登录
                     CustomerDao cDao= new CustomerDao();
                     Customer customer = new Customer();
                     Customer customer2;
                     while (flag2){
-                        System.out.println("请输入身份证号");
+                        System.out.println("请输入身份证号：");
                         customer.setIdNumber(sc1.next());
-                        System.out.println("请输入密码");
+                        System.out.println("请输入密码：");
                         customer.setPassword(sc1.next());
                         customer2 =cDao.login(customer.getIdNumber(), customer.getPassword());
                         if (customer2 == null) {
-                            System.out.println("登录失败！输入0退出，输入任意键重试");
+                            System.out.println("登录失败！输入0退出，输入任意键重试：");
                             if(sc1.next().equals("0")){
                                 flag2=false;
                             }
                         } else {
                             System.out.println("欢迎用户" + customer2.getUsername());
                             flag2=false;
-                            System.out.println("(用户后续功能)");
-                            //todo 用户后续功能
-//                            cDao.showMenu();
+                            cDao.showMenu(customer2.getIdNumber());
                         }
                     }
                 }
-                case 2 -> {//todo 商家登录
+                case 2 -> {//商家登录
                     BusinessDao bDao =new BusinessDao();
                     Business business = new Business();
                     Business business2;
@@ -72,24 +68,22 @@ public class Main {
                         business.setId(sc1.nextInt());
                         System.out.println("请输入商家密码：");
                         business.setPassword(sc1.next());
-                        business2 = bDao.login(business.getId()+"", business.getPassword());
+                        business2 = bDao.login(String.valueOf(business.getId()), business.getPassword());
                         if (business2 == null) {
-                            System.out.println("登录失败！输入0退出，输入任意键重试");
+                            System.out.println("登录失败！输入0退出，输入任意键重试：");
                             if(sc1.next().equals("0")){
                                 flag2=false;
                             }
                         } else {
                             System.out.println("欢迎商家" + business2.getName());
                             flag2=false;
-                            System.out.println("(商家后续功能)");
-                            //todo 商家后续功能
-//                            bDao.showMenu();
+                            bDao.showMenu(String.valueOf(business2.getId()));
                         }
                     }
 
 
                 }
-                case 3 -> {//todo 管理员登录
+                case 3 -> {//管理员登录
                     AdminDao aDao=new AdminDao();
                     Admin admin=new Admin();
                     Admin admin2;
@@ -98,7 +92,7 @@ public class Main {
                         admin.setId(sc1.nextInt());
                         System.out.println("请输入管理员密码：");
                         admin.setPassword(sc1.next());
-                        admin2 = aDao.login(admin.getId()+"", admin.getPassword());
+                        admin2 = aDao.login(String.valueOf(admin.getId()), admin.getPassword());
                         if (admin2 == null) {
                             System.out.println("登录失败！输入0退出，输入任意键重试");
                             if(sc1.next().equals("0")){
@@ -107,9 +101,7 @@ public class Main {
                         } else {
                             System.out.println("欢迎管理员" + admin2.getName());
                             flag2=false;
-                            System.out.println("(管理员后续功能)");
-                            //todo 管理员后续功能
-//                            aDao.showMenu();
+                            aDao.showMenu();
                         }
                     }
 
@@ -137,7 +129,7 @@ public class Main {
 
 
                 }
-                case 5 -> {//todo 商家注册
+                case 5 -> {//商家注册
                     BusinessDao bDao=new BusinessDao();
                     Business business=new Business();
                     System.out.println("请输入要注册的名称：");
