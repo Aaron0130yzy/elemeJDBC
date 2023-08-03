@@ -69,10 +69,11 @@ public class CustomerDao {
 
     public Customer search(String id) {
         String sqlQueryLang = "SELECT DISTINCT * FROM Customer WHERE idNumber ='" + id +"'";
-        Customer customer = new Customer();
+        Customer customer =null;
         try{
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             while (rs.next()) {
+                customer = new Customer();
                 customer.setIdNumber(rs.getString("idNumber"));
                 customer.setPassword(rs.getString("password"));
                 customer.setUsername(rs.getString("username"));

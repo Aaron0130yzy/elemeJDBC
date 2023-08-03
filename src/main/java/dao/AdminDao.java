@@ -146,18 +146,17 @@ public class AdminDao {
                     if (customer == null) {
                         System.out.println("用户身份证号 " + id + " 不存在！");
                     } else {
-                        System.out.println(customer);
-//                        System.out.println("用户身份证号：" + customer.getIdNumber());
-//                        System.out.println("用户名：" + customer.getUsername());
-//                        System.out.println("用户密码：" + customer.getPassword());
-//                        System.out.println("用户地址：" + customer.getAddress());
-//                        String sex = "女";
-//                        if (customer.getSex()) {
-//                            sex = "男";
-//                        }
-//                        System.out.println("用户性别：" + sex);
-//                        System.out.println("用户真实姓名：" + customer.getRealName());
-//                        System.out.println("用户电话号码：" + customer.getPhoneNumber());
+                        System.out.println("用户身份证号：" + customer.getIdNumber());
+                        System.out.println("用户名：" + customer.getUsername());
+                        System.out.println("用户密码：" + customer.getPassword());
+                        System.out.println("用户地址：" + customer.getAddress());
+                        String sex = "女";
+                        if (customer.getSex()) {
+                            sex = "男";
+                        }
+                        System.out.println("用户性别：" + sex);
+                        System.out.println("用户真实姓名：" + customer.getRealName());
+                        System.out.println("用户电话号码：" + customer.getPhoneNumber());
                     }
                     System.out.println("按回车键继续...");
                     sc.nextLine();

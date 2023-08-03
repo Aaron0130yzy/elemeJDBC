@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="完成商家注册和登录，接下来写增删改查">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +89,7 @@
       <workItem from="1690943670732" duration="1937000" />
       <workItem from="1690945726135" duration="2872000" />
       <workItem from="1690963398611" duration="3603000" />
-      <workItem from="1691028837925" duration="12973000" />
+      <workItem from="1691028837925" duration="14333000" />
     </task>
     <task id="LOCAL-00001" summary="看起来像是搞好了">
       <created>1689045959887</created>
@@ -147,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691032589026</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能">
+      <option name="closed" value="true" />
+      <created>1691058064271</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1691058064271</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +189,7 @@
     <MESSAGE value="完成管理员注册和管理员登录" />
     <MESSAGE value="完成用户注册和用户登录" />
     <MESSAGE value="完成商家注册和登录，接下来写增删改查" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成商家注册和登录，接下来写增删改查" />
+    <MESSAGE value="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能" />
   </component>
 </project>
