@@ -31,8 +31,8 @@ public class BusinessDao {
         return null;
     }
 
-    public String regist(String name, String pwd, String add, String pnum, String des) {
-        String newId=null;
+    public void regist(String name, String pwd, String add, String pnum, String des) {
+        String newId;
         String sqlQueryLang = "INSERT INTO Business(name,password,address,phoneNumber,description) VALUES('"
                 + name + "','" + pwd + "','" + add
                 + "','" + pnum + "','" + des + "')";
@@ -47,10 +47,7 @@ public class BusinessDao {
             }
         } catch (SQLException e) {
             System.out.println("注册失败！"+e);
-            newId = null;
         }
-
-        return newId;
     }
 
     public void delete(String id) {
@@ -63,37 +60,47 @@ public class BusinessDao {
         }
     }
 
-    public List<Business> showAllBusiness() throws SQLException {
+    public List<Business> showAllBusiness(){
         String sqlQueryLang = "SELECT  * FROM Business";
-        ResultSet rs = connection.executeQuery(sqlQueryLang);
-
         var lst = new ArrayList<Business>();
-        while (rs.next()) {
-            Business business = new Business();
-            business.setId(Integer.parseInt(rs.getString("id")));
-            business.setPassword(rs.getString("password"));
-            business.setName(rs.getString("name"));
-            business.setAddress(rs.getString("address"));
-            business.setDescription(rs.getString("description"));
-            business.setPhoneNumber(rs.getString("phoneNumber"));
-            lst.add(business);
+        try{
+            ResultSet rs = connection.executeQuery(sqlQueryLang);
+            while (rs.next()) {
+                Business business = new Business();
+                business.setId(Integer.parseInt(rs.getString("id")));
+                business.setPassword(rs.getString("password"));
+                business.setName(rs.getString("name"));
+                business.setAddress(rs.getString("address"));
+                business.setDescription(rs.getString("description"));
+                business.setPhoneNumber(rs.getString("phoneNumber"));
+                lst.add(business);
+            }
+            return lst;
+        } catch (SQLException e) {
+            System.out.println("查询失败！"+e);
         }
         return lst;
+
     }
 
     //根据id查询商户
-    public Business searchId(String id) throws SQLException {
-        String sqlQueryLang = "SELECT DISTINCT * FROM Bussiness WHERE id ='" + id + "'";
-        ResultSet rs = connection.executeQuery(sqlQueryLang);
+    public Business search(String id){
+        String sqlQueryLang = "SELECT DISTINCT * FROM Business WHERE id ='" + id + "'";
         Business business = null;
-        while (rs.next()) {
-            business = new Business();
-            business.setId(Integer.parseInt(rs.getString("id")));
-            business.setPassword(rs.getString("password"));
-            business.setName(rs.getString("name"));
-            business.setAddress(rs.getString("address"));
-            business.setDescription(rs.getString("describe"));
-            business.setPhoneNumber(rs.getString("telephone"));
+        try{
+            ResultSet rs = connection.executeQuery(sqlQueryLang);
+            while (rs.next()) {
+                business = new Business();
+                business.setId(Integer.parseInt(rs.getString("id")));
+                business.setPassword(rs.getString("password"));
+                business.setName(rs.getString("name"));
+                business.setAddress(rs.getString("address"));
+                business.setDescription(rs.getString("description"));
+                business.setPhoneNumber(rs.getString("phoneNumber"));
+            }
+            return business;
+        } catch (SQLException e) {
+            System.out.println("查询失败！"+e);
         }
         return business;
     }

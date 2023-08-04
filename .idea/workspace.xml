@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能">
+    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="完成用户查询，剩下的就只是时间问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,24 +36,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "F:/大二下/网络空间安全实训/sqljdbc_12.2/enu/mssql-jdbc-12.2.0.jre8.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "库",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/大二下/网络空间安全实训/sqljdbc_12.2/enu/mssql-jdbc-12.2.0.jre8.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;库&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
@@ -89,7 +90,8 @@
       <workItem from="1690943670732" duration="1937000" />
       <workItem from="1690945726135" duration="2872000" />
       <workItem from="1690963398611" duration="3603000" />
-      <workItem from="1691028837925" duration="14333000" />
+      <workItem from="1691028837925" duration="15603000" />
+      <workItem from="1691115995068" duration="1512000" />
     </task>
     <task id="LOCAL-00001" summary="看起来像是搞好了">
       <created>1689045959887</created>
@@ -152,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1691058064271</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="完成用户查询，剩下的就只是时间问题">
+      <option name="closed" value="true" />
+      <created>1691059349902</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1691059349902</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +200,7 @@
     <MESSAGE value="完成用户注册和用户登录" />
     <MESSAGE value="完成商家注册和登录，接下来写增删改查" />
     <MESSAGE value="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="查询写好了，但存在问题，以后慢慢改&#10;优化了使用体验，新增管理员修改密码功能" />
+    <MESSAGE value="完成用户查询，剩下的就只是时间问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成用户查询，剩下的就只是时间问题" />
   </component>
 </project>

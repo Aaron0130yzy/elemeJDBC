@@ -5,6 +5,7 @@ import entities.Product;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,6 +66,31 @@ public class CustomerDao {
         } catch (SQLException e) {
             System.out.println("删除失败！"+e);
         }
+    }
+
+    //直接查询所有用户信息
+    public List<Customer> showAllCustomer(){
+        String sqlQueryLang = "SELECT  * FROM Customer";
+        var lst = new ArrayList<Customer>();
+        try{
+            ResultSet rs = connection.executeQuery(sqlQueryLang);
+            while (rs.next()) {
+                Customer Customer = new Customer();
+                Customer.setIdNumber(rs.getString("idNumber"));
+                Customer.setPassword(rs.getString("password"));
+                Customer.setUsername(rs.getString("username"));
+                Customer.setAddress(rs.getString("address"));
+                Customer.setSex(rs.getBoolean("sex"));
+                Customer.setRealName(rs.getString("realName"));
+                Customer.setPhoneNumber(rs.getString("phoneNumber"));
+                lst.add(Customer);
+            }
+        } catch (SQLException e) {
+            System.out.println("查询失败！"+e);
+        }
+
+
+        return lst;
     }
 
     public Customer search(String id) {

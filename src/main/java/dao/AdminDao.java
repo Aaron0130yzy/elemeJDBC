@@ -45,8 +45,8 @@ public class AdminDao {
         return null;
     }
 
-    public String regist(String name, String pwd) {
-        String newId = null;
+    public void regist(String name, String pwd) {
+        String newId ;
         try {
             String sqlQueryLang = "INSERT INTO Admin (name, password) VALUES ('" + name + "', '" + pwd + "');";
             connection.modify(sqlQueryLang);
@@ -61,8 +61,6 @@ public class AdminDao {
         } catch (SQLException e) {
             System.out.println("注册失败！"+e);
         }
-
-        return newId;
     }
     public void modify(String id, String password, String newPassword) {
         String sqlQueryLang = "UPDATE Admin SET password = '" + newPassword +"' WHERE id = '"
@@ -95,8 +93,28 @@ public class AdminDao {
 
             // 执行相应操作
             switch (choice) {
-                case 1 -> {//todo 查询商家
-
+                case 1 -> {//查询商家
+                    System.out.println("输入商家id，输入*查询所有商家：");
+                    String id = sc.next();
+                    if(id.equals("*")){//todo 打印所有商家信息
+                        bDao.showAllBusiness();
+                    }
+                    else{
+                        business=bDao.search(id);
+                        if (business == null) {
+                            System.out.println("商家id " + id + " 不存在！");
+                        } else {
+                            System.out.println("商家id：" + business.getId());
+                            System.out.println("商家名：" + business.getName());
+                            System.out.println("商家密码：" + business.getPassword());
+                            System.out.println("商家地址：" + business.getAddress());
+                            System.out.println("商家电话：" + business.getPhoneNumber());
+                            System.out.println("商家描述：" + business.getDescription());
+                        }
+                    }
+                    System.out.println("按回车键继续...");
+                    sc.nextLine();
+                    sc.nextLine();
                 }
                 case 2 -> {// 添加商家
                     System.out.println("请输入商店名称");
@@ -109,14 +127,8 @@ public class AdminDao {
                     business.setPhoneNumber(sc.next());
                     System.out.println("请输入简介");
                     business.setDescription(sc.next());
-                    String id;
-                    id = bDao.regist(business.getName(),business.getPassword(),business.getAddress(),
+                    bDao.regist(business.getName(),business.getPassword(),business.getAddress(),
                             business.getPhoneNumber(),business.getDescription());
-                    if (id!=null) {
-                        System.out.println("注册成功！id为" + id);
-                    } else {
-                        System.out.println("注册失败");
-                    }
                 }
                 case 3 -> {// 修改商家信息
                     System.out.println("输入要改的商家id：");
@@ -140,23 +152,28 @@ public class AdminDao {
                     bDao.delete(id);
                 }
                 case 5 -> {//查询用户
-                    System.out.println("输入用户身份证号：");
+                    System.out.println("输入用户身份证号，输入*查询所有用户：");
                     String id = sc.next();
-                    customer=cDao.search(id);
-                    if (customer == null) {
-                        System.out.println("用户身份证号 " + id + " 不存在！");
-                    } else {
-                        System.out.println("用户身份证号：" + customer.getIdNumber());
-                        System.out.println("用户名：" + customer.getUsername());
-                        System.out.println("用户密码：" + customer.getPassword());
-                        System.out.println("用户地址：" + customer.getAddress());
-                        String sex = "女";
-                        if (customer.getSex()) {
-                            sex = "男";
+                    if(id.equals("*")){//todo 打印所有用户信息
+                        cDao.showAllCustomer();
+                    }
+                    else {
+                        customer = cDao.search(id);
+                        if (customer == null) {
+                            System.out.println("用户身份证号 " + id + " 不存在！");
+                        } else {
+                            System.out.println("用户身份证号：" + customer.getIdNumber());
+                            System.out.println("用户名：" + customer.getUsername());
+                            System.out.println("用户密码：" + customer.getPassword());
+                            System.out.println("用户地址：" + customer.getAddress());
+                            String sex = "女";
+                            if (customer.getSex()) {
+                                sex = "男";
+                            }
+                            System.out.println("用户性别：" + sex);
+                            System.out.println("用户真实姓名：" + customer.getRealName());
+                            System.out.println("用户电话号码：" + customer.getPhoneNumber());
                         }
-                        System.out.println("用户性别：" + sex);
-                        System.out.println("用户真实姓名：" + customer.getRealName());
-                        System.out.println("用户电话号码：" + customer.getPhoneNumber());
                     }
                     System.out.println("按回车键继续...");
                     sc.nextLine();
