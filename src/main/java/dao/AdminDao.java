@@ -96,8 +96,15 @@ public class AdminDao {
                 case 1 -> {//查询商家
                     System.out.println("输入商家id，输入*查询所有商家：");
                     String id = sc.next();
-                    if(id.equals("*")){//todo 打印所有商家信息
-                        bDao.showAllBusiness();
+                    if(id.equals("*")){//打印所有商家信息
+                        List<Business> list ;
+                        list = bDao.showAllBusiness();
+                        System.out.println("商家id\t商家名称\t商家密码\t商家地址\t商家号码\t商家介绍");
+                        for (Business b : list) {
+                            // 输出 Business 对象的所有属性值
+                            System.out.println(b.getId() + "\t" + b.getName() + "\t" + b.getPassword() + "\t"
+                                    + b.getAddress() + "\t" + b.getPhoneNumber() + "\t" + b.getDescription());
+                        }
                     }
                     else{
                         business=bDao.search(id);
@@ -154,8 +161,15 @@ public class AdminDao {
                 case 5 -> {//查询用户
                     System.out.println("输入用户身份证号，输入*查询所有用户：");
                     String id = sc.next();
-                    if(id.equals("*")){//todo 打印所有用户信息
-                        cDao.showAllCustomer();
+                    if(id.equals("*")){//打印所有用户信息
+                        List<Customer> list ;
+                        list = cDao.showAllCustomer();
+                        System.out.println("用户身份证\t用户名称\t用户密码\t用户地址\t用户电话号码\t用户真名");
+                        for (Customer c : list) {
+                            // 输出 Customer 对象的所有属性值
+                            System.out.println(c.getIdNumber() + "\t" + c.getUsername() + "\t" + c.getPassword() +
+                                    "\t" + c.getAddress() + "\t" + c.getPhoneNumber() + "\t" + c.getRealName());
+                        }
                     }
                     else {
                         customer = cDao.search(id);
@@ -193,15 +207,9 @@ public class AdminDao {
                     System.out.println("请输入用户真名；");
                     customer.setRealName(sc.next());
                     System.out.println("请输入用户身份证号：");
-                    String id;
-                    id = sc.next();
+                    customer.setIdNumber(sc.next());
                     cDao.regist(customer.getUsername(),customer.getPassword(),customer.getAddress(),customer.getSex(),
                             customer.getPhoneNumber(),customer.getRealName(),customer.getIdNumber());
-                    if (id!=null) {
-                        System.out.println("注册成功！");
-                    } else {
-                        System.out.println("注册失败");
-                    }
                 }
                 case 7 -> {//修改用户信息
                     System.out.println("输入要改的用户id：");
