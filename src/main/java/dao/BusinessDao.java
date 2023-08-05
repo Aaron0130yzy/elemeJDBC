@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class BusinessDao {
     Scanner sc = new Scanner(System.in);
+    ProductDao pDao = new ProductDao();
+    Product product = new Product();
     public Business login(String id, String pwd) {
         String sqlQueryLang = "SELECT DISTINCT * FROM Business WHERE id ='" + id + "' AND password ='" + pwd + "'";
         try {
@@ -125,16 +127,62 @@ public class BusinessDao {
             int choice = sc.nextInt();
             switch (choice) {
                 case 1 -> {
-                    //todo 查询自家菜品
+                    //查询自家菜品
+                    List<Product> list = pDao.showOnesAllProduct(id);
+                    System.out.println("商品id\t商品名称\t商品价格\t商品折扣\t是否在售\t商品介绍");
+                    for (Product p : list) {
+                        // 输出 Product 对象的所有属性值
+                        System.out.println(p.getId() + "  " + p.getName() + "  " + p.getPrice() + "  " + p.getDiscount()
+                                + "  " + p.isOnSale() + "  " + p.getDescription());
+                    }
+                    System.out.println("按回车键以继续...");
+                    sc.nextLine();
+                    sc.nextLine();
+
                 }
                 case 2 -> {
-                    //todo 添加菜品
+                    //添加菜品
+                    System.out.println("请输入商品名：");
+                    product.setName(sc.next());
+                    System.out.println("请输入价格：");
+                    product.setPrice(sc.nextBigDecimal());
+                    System.out.println("请输入折扣：");
+                    product.setDiscount(sc.nextBigDecimal());
+                    System.out.println("请输入在售状态，0表示不在售，其它任意字符表示在售：");
+                    String onSale=sc.next();
+                    product.setOnSale(!onSale.equals("0"));
+                    System.out.println("请输入商品描述：");
+                    product.setDescription(sc.next());
+                    pDao.add(id,product.getName(),product.getDiscount(),product.isOnSale(), product.getDescription(),
+                            product.getPrice());
+
                 }
                 case 3 -> {
-                    //todo 修改菜品信息
+                    //修改菜品信息
+                    System.out.println("请输入要修改的商品id：");
+                    String pid = sc.next();
+                    System.out.println("请输入商品名称：");
+                    product.setName(sc.next());
+                    System.out.println("请输入商品价格：");
+                    product.setPrice(sc.nextBigDecimal());
+                    System.out.println("请输入商品折扣：");
+                    product.setDiscount(sc.nextBigDecimal());
+                    System.out.println("请输入在售状态，0表示不在售，其它任意字符表示在售：");
+                    String onSale=sc.next();
+                    product.setOnSale(!onSale.equals("0"));
+                    System.out.println("请输入商品介绍：");
+                    product.setDescription(sc.next());
+                    pDao.modify(pid,id,product.getName(),product.getPrice(),product.getDiscount(),product.isOnSale(),
+                            product.getDescription());
                 }
                 case 4 -> {
-                    //todo 删除菜品
+                    //删除菜品
+                    System.out.println("请输入想要删除的商品id：");
+                    String pid = sc.next();
+                    System.out.println("确认删除吗？请输入y以确认：");
+                    if(sc.next().equals("y")){
+                        pDao.delete(pid,id);
+                    }
                 }
                 case 5 -> {
                     Business business = new Business();

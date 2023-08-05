@@ -1,15 +1,17 @@
 package entities;
 
+import java.math.BigDecimal;
+
 public class Product {
     private int businessId; // 商家ID
     private String name; // 商品名称
-    private double discount; // 商品折扣
+    private BigDecimal discount; // 商品折扣
     private boolean onSale; // 商品是否正在销售
     private String description; // 商品描述信息
     private int id; // 商品ID
-    private float price; // 商品价格
+    private BigDecimal price; // 商品价格
 
-    public Product(int businessId, String name, double discount, boolean onSale, String description, int id, float price) {
+    public Product(int businessId, String name, BigDecimal discount, boolean onSale, String description, int id, BigDecimal price) {
         this.businessId = businessId;
         this.name = name;
         this.discount = discount;
@@ -39,11 +41,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getDiscount() {
+    public BigDecimal getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
 
@@ -71,11 +73,11 @@ public class Product {
         this.id = id;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
