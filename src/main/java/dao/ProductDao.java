@@ -20,7 +20,8 @@ public class ProductDao {
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             while (rs.next()) {
                 Product Product = new Product();
-                Product.setId(Integer.parseInt(rs.getString("id")));
+                Product.setId(rs.getInt("id"));
+                Product.setBusinessId(rs.getInt("businessId"));;
                 Product.setName(rs.getString("name"));
                 Product.setPrice(rs.getBigDecimal("price"));
                 Product.setOnSale(rs.getBoolean("onSale"));

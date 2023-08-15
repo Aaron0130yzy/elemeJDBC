@@ -1,8 +1,8 @@
 package dao;
 
-import entities.Customer;
-import entities.Product;
+import entities.*;
 
+import javax.xml.namespace.QName;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -116,26 +116,64 @@ public class CustomerDao {
     }
 
     public void showMenu(String idNumber) {
-//        ProductDao pDao = new ProductDao();
+        ProductDao pDao = new ProductDao();
         Scanner sc = new Scanner(System.in);
 //        OrderDao oDao = new OrderDao();
         while (true) {
             // 显示菜单选项
             System.out.println("请选择操作：");
             System.out.println("1. 查看商品列表\t2. 查询指定商家菜单");
-            System.out.println("3. 修改个人信息\t4. 查看商品列表");
-            System.out.println("5. 下订单");
+            System.out.println("3. 修改个人信息\t4. 下订单");
             System.out.println("0. 退出");
 
             // 获取用户输入
             int choice = sc.nextInt();
             switch (choice) {
                 case 1 -> {
-                    //todo 查看商品列表
-//                    pDao.showAllProduct();
+                    //查看商品列表
+                    List<Product> list = pDao.showAllProduct();
+                    System.out.println("商品id\t商家id\t商品名称\t商品价格\t商品折扣\t是否在售\t商品介绍");
+                    for (Product p : list) {
+                        System.out.println(p.getId() + "\t" + p.getBusinessId() + "\t" + p.getName() + "\t" +
+                                p.getPrice() + "\t" + p.getDiscount() + "\t" + p.isOnSale() + "\t" + p.getDescription());
+                    }
+                    System.out.println("按回车键以继续...");
+                    sc.nextLine();
+                    sc.nextLine();
                 }
                 case 2 -> {
-                    //todo 查询指定商家的菜单
+                    //查询指定商家的菜单
+                    String id;
+                    System.out.println("请输入商家id");
+                    id = sc.next();
+                    List<Product> list = pDao.showOnesAllProduct(id);
+                    if (list.isEmpty()) {
+                        System.out.println("无效id，请检查输入！");
+                    } else {
+                        String name=null;
+                        try {
+                            // 创建查询语句
+                            String query = "SELECT name FROM business WHERE id = "+id;
+                            // 执行查询
+                            ResultSet rs = connection.executeQuery(query);
+                            // 处理查询结果
+                            while (rs.next()){
+                                name = rs.getString("name");
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("查询失败！"+e);
+                        }
+                        System.out.println("商家 "+ name + " 的菜单：");
+                        System.out.println("商品id\t商品名称\t商品价格\t商品折扣\t是否在售\t商品介绍");
+                        for (Product p : list) {
+                            System.out.println(p.getId() + "\t" + p.getName() + "\t" + p.getPrice() + "\t" + p.getDiscount()
+                                    + "\t" + p.isOnSale() + "\t" + p.getDescription());
+                        }
+                    }
+                    System.out.println("按回车键以继续...");
+                    sc.nextLine();
+                    sc.nextLine();
+
                 }
                 case 3 -> {
                     Customer customer = new Customer();
@@ -152,10 +190,22 @@ public class CustomerDao {
                     modify(customer.getUsername(), customer.getPassword(), customer.getSex(),customer.getAddress(), customer.getPhoneNumber(), idNumber);
                 }
                 case 4 -> {
-                    //todo 查看商品列表
-                }
-                case 5 -> {
                     //todo 下订单
+                    List<ProductPair> productPairs = new ArrayList<>();
+                    System.out.print("请输入商品数量：");
+                    int numberOfProducts = sc.nextInt();
+
+                    for (int i = 0; i < numberOfProducts; i++) {
+                        System.out.print("请输入第 " + (i + 1) + " 个商品ID: ");
+                        int productId = sc.nextInt();
+
+                        System.out.print("请输入第 " + (i + 1) + " 个商品数量: ");
+                        int quantity = sc.nextInt();
+
+                        ProductPair productPair = new ProductPair(productId, quantity);
+                        productPairs.add(productPair);
+
+                    }
                 }
                 case 0 -> {
                     return;

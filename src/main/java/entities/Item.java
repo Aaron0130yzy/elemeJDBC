@@ -1,12 +1,14 @@
 package entities;
 
+import java.math.BigDecimal;
+
 public class Item {
     private int orderId;
     private int productId;
-    private float price;
+    private BigDecimal price;
     private int amount;
 
-    public Item(int orderId, int productId, float price, int amount) {
+    public Item(int orderId, int productId, BigDecimal price, int amount) {
         this.orderId = orderId;
         this.productId = productId;
         this.price = price;
@@ -29,11 +31,11 @@ public class Item {
         this.productId = productId;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
