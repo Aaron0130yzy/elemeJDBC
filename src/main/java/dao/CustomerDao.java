@@ -8,15 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class CustomerDao {
     public Customer login(String id, String pwd) {
         String sqlQueryLang = "SELECT DISTINCT * FROM Customer WHERE idNumber ='" + id + "' AND password ='" + pwd + "'";
-        Customer customer;
-        customer = new Customer();
+        Customer customer=null;
         try {
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             if (rs.next()) {
+                customer = new Customer();
                 customer.setIdNumber(rs.getString("idNumber"));
                 customer.setPassword(rs.getString("password"));
                 customer.setUsername(rs.getString("username"));
@@ -24,7 +25,6 @@ public class CustomerDao {
                 customer.setSex(rs.getBoolean("sex"));
                 customer.setRealName(rs.getString("realName"));
                 customer.setPhoneNumber(rs.getString("phoneNumber"));
-                return customer;
             }
         } catch (SQLException e) {
             System.out.println("登录失败");
@@ -197,6 +197,7 @@ public class CustomerDao {
                     List<ProductPair> ready = new ArrayList<>();
                     Product product;
                     BigDecimal sum=new BigDecimal(0);
+                    BigDecimal price = new BigDecimal(0);
                     int i=0,productId,quantity;
                     String input;
                     System.out.println("开始录入订单内容，输入#以结束：");
@@ -224,11 +225,11 @@ public class CustomerDao {
                             continue;
                         }
                         i++;
-                        ProductPair productPair = new ProductPair(productId, quantity);
+                        ProductPair productPair = new ProductPair(productId, quantity, price);
                         productPairs.add(productPair);
                     }
 
-                    for(ProductPair pp : productPairs){//检查输入的商品id状况
+                    for(ProductPair pp : productPairs){//检查输入的商品id状况以及计算价格
                         product = pDao.searchId(String.valueOf(pp.getId()));
                         if(product==null){//查不到，则认为id无效
                             invalid.add(pp.getId());
@@ -237,9 +238,10 @@ public class CustomerDao {
                             notForSale.add(pp.getId());
                         }
                         else {//剩下的认为是正常的
-                            ProductPair productPair2 = new ProductPair(pp.getId(), pp.getQuantity());
+                            price =product.getPrice().multiply(product.getDiscount());
+                            ProductPair productPair2 = new ProductPair(pp.getId(), pp.getQuantity(),price);
                             ready.add(productPair2);
-                            sum.add(product.getPrice().multiply(product.getDiscount()));//计入到总价里
+                            sum=sum.add(price.multiply(BigDecimal.valueOf(pp.getQuantity())));//计入到总价里
                         }
                     }
                     if(!notForSale.isEmpty()){
@@ -255,11 +257,16 @@ public class CustomerDao {
                         }
                     }
                     if(!ready.isEmpty()){
+                        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
                         System.out.println("以下商品准备下单：");
-                        System.out.println("商品id\t选购数量");
+                        System.out.println("商品id\t数量\t价格    小计");
                         for(ProductPair pp :ready){
-                            System.out.println(pp.getId()+"\t"+pp.getQuantity());
+                            System.out.println(pp.getId()+"\t"+pp.getQuantity()+"\t"+decimalFormat.format(pp.getPrice())
+                                    +"\t"+decimalFormat.format(pp.getPrice().multiply(BigDecimal.valueOf(pp.getQuantity()))));
                         }
+
+                        System.out.println("总价：￥" + decimalFormat.format(sum));
+
                         System.out.println("\n确认下单吗？输入y以确认，输入其它键取消：");
                         if(sc.next().equals("y")){
                             System.out.println("（后续下单操作）");

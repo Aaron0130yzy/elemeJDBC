@@ -14,9 +14,9 @@ public class BusinessDao {
     Product product = new Product();
     public Business login(String id, String pwd) {
         String sqlQueryLang = "SELECT DISTINCT * FROM Business WHERE id ='" + id + "' AND password ='" + pwd + "'";
+        Business business=null;
         try {
             ResultSet rs = connection.executeQuery(sqlQueryLang);
-            Business business;
             if (rs.next()) {
                 business = new Business();
                 business.setId(Integer.parseInt(rs.getString("id")));
@@ -30,7 +30,7 @@ public class BusinessDao {
         } catch (SQLException e) {
             return null;
         }
-        return null;
+        return business;
     }
 
     public void regist(String name, String pwd, String add, String pnum, String des) {
@@ -204,9 +204,7 @@ public class BusinessDao {
                 case 0 -> {
                     return;
                 }
-                default -> {
-                    System.out.println("输入无效，请重新输入！");
-                }
+                default -> System.out.println("输入无效，请重新输入！");
             }
         }
 

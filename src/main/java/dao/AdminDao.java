@@ -29,20 +29,20 @@ public class AdminDao {
 //            throw new RuntimeException(e);
 //        }
         String sql="SELECT DISTINCT * FROM Admin WHERE id = '"+id+"' AND password = '"+pwd+"'";
+        Admin admin = null;
         try {//进行查询
 //            rs = statement.executeQuery();
             ResultSet rs = connection.executeQuery(sql);
             if (rs.next()) {
-                Admin = new Admin();
-                Admin.setId(rs.getInt("id"));
-                Admin.setPassword(rs.getString("password"));
-                Admin.setName(rs.getString("name"));
-                return Admin;
+                admin = new Admin();
+                admin.setId(rs.getInt("id"));
+                admin.setPassword(rs.getString("password"));
+                admin.setName(rs.getString("name"));
             }
         } catch (SQLException e) {
             return null;
         }
-        return null;
+        return admin;
     }
 
     public void regist(String name, String pwd) {
