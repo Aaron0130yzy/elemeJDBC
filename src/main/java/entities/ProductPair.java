@@ -9,7 +9,7 @@ public class ProductPair {
         this.quantity = quantity;
     }
 
-    public int getProductId() {
+    public int getId() {
         return productId;
     }
 

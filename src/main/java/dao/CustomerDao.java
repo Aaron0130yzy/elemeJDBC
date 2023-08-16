@@ -2,7 +2,7 @@ package dao;
 
 import entities.*;
 
-import javax.xml.namespace.QName;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -192,20 +192,88 @@ public class CustomerDao {
                 case 4 -> {
                     //todo 下订单
                     List<ProductPair> productPairs = new ArrayList<>();
-                    System.out.print("请输入商品数量：");
-                    int numberOfProducts = sc.nextInt();
-
-                    for (int i = 0; i < numberOfProducts; i++) {
-                        System.out.print("请输入第 " + (i + 1) + " 个商品ID: ");
-                        int productId = sc.nextInt();
-
-                        System.out.print("请输入第 " + (i + 1) + " 个商品数量: ");
-                        int quantity = sc.nextInt();
-
+                    List<Integer> notForSale = new ArrayList<>();
+                    List<Integer> invalid = new ArrayList<>();
+                    List<ProductPair> ready = new ArrayList<>();
+                    Product product;
+                    BigDecimal sum=new BigDecimal(0);
+                    int i=0,productId,quantity;
+                    String input;
+                    System.out.println("开始录入订单内容，输入#以结束：");
+                    while(true) {
+                        System.out.print("请输入第 " + (i+1) + " 个商品ID: ");
+                        input = sc.next();
+                        if(input.equals("#")) break;
+                        try{
+                            productId = Integer.parseInt(input);
+                        }
+                        catch (Exception e){
+                            System.out.println("无效输入！请重新输入！");
+                            continue;
+                        }
+                        System.out.print("请输入商品数量: ");
+                        try{
+                            quantity = sc.nextInt();
+                            if(quantity<=0){
+                                System.out.println("无效的数字！请重新输入！");
+                                continue;
+                            }
+                        }
+                        catch (Exception e){
+                            System.out.println("无效输入！请重新输入！");
+                            continue;
+                        }
+                        i++;
                         ProductPair productPair = new ProductPair(productId, quantity);
                         productPairs.add(productPair);
-
                     }
+
+                    for(ProductPair pp : productPairs){//检查输入的商品id状况
+                        product = pDao.searchId(String.valueOf(pp.getId()));
+                        if(product==null){//查不到，则认为id无效
+                            invalid.add(pp.getId());
+                        }
+                        else if(!product.isOnSale()){//不在售商品
+                            notForSale.add(pp.getId());
+                        }
+                        else {//剩下的认为是正常的
+                            ProductPair productPair2 = new ProductPair(pp.getId(), pp.getQuantity());
+                            ready.add(productPair2);
+                            sum.add(product.getPrice().multiply(product.getDiscount()));//计入到总价里
+                        }
+                    }
+                    if(!notForSale.isEmpty()){
+                        System.out.println("以下商品id不在售：");
+                        for(Integer a : notForSale){
+                            System.out.println(a);
+                        }
+                    }
+                    if(!invalid.isEmpty()){
+                        System.out.println("以下id无效：");
+                        for(Integer a : invalid){
+                            System.out.println(a);
+                        }
+                    }
+                    if(!ready.isEmpty()){
+                        System.out.println("以下商品准备下单：");
+                        System.out.println("商品id\t选购数量");
+                        for(ProductPair pp :ready){
+                            System.out.println(pp.getId()+"\t"+pp.getQuantity());
+                        }
+                        System.out.println("\n确认下单吗？输入y以确认，输入其它键取消：");
+                        if(sc.next().equals("y")){
+                            System.out.println("（后续下单操作）");
+                        }
+                        else{
+                            System.out.println("操作已取消，按回车键继续...");
+                            sc.nextLine();
+                            sc.nextLine();
+                        }
+                    }
+                    else{
+                        System.out.println("当前订单无可下单商品！请返回重试！");
+                    }
+
                 }
                 case 0 -> {
                     return;

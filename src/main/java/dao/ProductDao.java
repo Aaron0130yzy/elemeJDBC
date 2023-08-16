@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class ProductDao {
     Product product=new Product();
-    Scanner sc = new Scanner(System.in);
 
     public List<Product> showAllProduct(){
         String sqlQueryLang = "SELECT  * FROM Product";
@@ -21,7 +20,7 @@ public class ProductDao {
             while (rs.next()) {
                 Product Product = new Product();
                 Product.setId(rs.getInt("id"));
-                Product.setBusinessId(rs.getInt("businessId"));;
+                Product.setBusinessId(rs.getInt("businessId"));
                 Product.setName(rs.getString("name"));
                 Product.setPrice(rs.getBigDecimal("price"));
                 Product.setOnSale(rs.getBoolean("onSale"));
@@ -54,6 +53,28 @@ public class ProductDao {
             System.out.println("查询失败！"+e);
         }
         return lst;
+    }
+
+    public Product searchId(String id){
+        String sqlQueryLang = "SELECT DISTINCT * FROM Product WHERE id ='" + id + "'";
+        Product product=null;
+        try{
+            ResultSet rs = connection.executeQuery(sqlQueryLang);
+            while (rs.next()) {
+                product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setOnSale(rs.getBoolean("onSale"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getBigDecimal("discount"));
+            }
+        }
+        catch (Exception e){
+            return product;
+        }
+
+        return product;
     }
 
     public void add(String bid, String name, BigDecimal dis, boolean onsale, String des, BigDecimal price) {
