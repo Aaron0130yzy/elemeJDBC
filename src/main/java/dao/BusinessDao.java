@@ -40,7 +40,7 @@ public class BusinessDao {
                 + "','" + pnum + "','" + des + "')";
         try {
             connection.modify(sqlQueryLang);
-            sqlQueryLang = "SELECT id FROM business WHERE name = '" + name+"'";
+            sqlQueryLang = "SELECT id FROM Business WHERE name = '" + name+"'";
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             while (rs.next()) {
                 newId = rs.getString("id");

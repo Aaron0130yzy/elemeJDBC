@@ -117,6 +117,8 @@ public class CustomerDao {
 
     public void showMenu(String idNumber) {
         ProductDao pDao = new ProductDao();
+        OrderDao oDao =new OrderDao();
+        ItemDao iDao = new ItemDao();
         Scanner sc = new Scanner(System.in);
 //        OrderDao oDao = new OrderDao();
         while (true) {
@@ -269,7 +271,17 @@ public class CustomerDao {
 
                         System.out.println("\n确认下单吗？输入y以确认，输入其它键取消：");
                         if(sc.next().equals("y")){
-                            System.out.println("（后续下单操作）");
+                            Orders order2=oDao.create(idNumber);
+                            if(!(order2==null)) System.out.println("创建成功！订单id："+order2.getId());
+                            for(ProductPair pp : ready){
+                                if(!iDao.create(order2.getId(), pp.getId(),pp.getPrice(), pp.getQuantity())){
+                                    System.out.println("创建订单条目失败！");
+                                    break;
+                                }
+                            }
+                            System.out.println("您的订单已创建成功！按回车键继续...");
+                            sc.nextLine();
+                            sc.nextLine();
                         }
                         else{
                             System.out.println("操作已取消，按回车键继续...");

@@ -7,7 +7,7 @@ public class connection {
     static public Connection getConnection() {//连接数据库
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            System.out.println("连接成功1");
+//            System.out.println("连接成功1");
         } catch (Exception e) {
             System.out.println("连接失败1");
         }
@@ -22,7 +22,7 @@ public class connection {
 
         try {
             con = DriverManager.getConnection(connectionUrl);
-            System.out.println("连接成功2");
+//            System.out.println("连接成功2");
         } catch (SQLException e) {
             System.out.println("请输入正确的表名" + e);
             System.out.println("连接失败2");

@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="用户下订单的交互部分好了&#10;剩下就是数据库操作部分&#10;感觉会很难，存个档先（）">
+    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="优化了操作交互体验&#10;修复了登录bug">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ItemDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AdminDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/ProductPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/ProductPair.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +129,7 @@
       <workItem from="1692086396977" duration="57000" />
       <workItem from="1692086462149" duration="44000" />
       <workItem from="1692086509116" duration="4994000" />
-      <workItem from="1692152740433" duration="5151000" />
+      <workItem from="1692152740433" duration="10172000" />
     </task>
     <task id="LOCAL-00001" summary="看起来像是搞好了">
       <created>1689045959887</created>
@@ -240,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692155088071</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="优化了操作交互体验&#10;修复了登录bug">
+      <option name="closed" value="true" />
+      <created>1692158005158</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1692158005158</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +292,7 @@
     <MESSAGE value="商家商品增删改查功能完成" />
     <MESSAGE value="除了订单相关都好了" />
     <MESSAGE value="用户下订单的交互部分好了&#10;剩下就是数据库操作部分&#10;感觉会很难，存个档先（）" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户下订单的交互部分好了&#10;剩下就是数据库操作部分&#10;感觉会很难，存个档先（）" />
+    <MESSAGE value="优化了操作交互体验&#10;修复了登录bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化了操作交互体验&#10;修复了登录bug" />
   </component>
 </project>
