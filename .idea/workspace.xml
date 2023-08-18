@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="优化了操作交互体验&#10;修复了登录bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ItemDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDao.java" afterDir="false" />
+    <list default="true" id="23b0d933-2ee8-40df-be30-77c4660e735a" name="更改" comment="beta版完成力（泪奔）&#10;太感动力（大哭）">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BusinessDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Item.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +131,9 @@
       <workItem from="1692086396977" duration="57000" />
       <workItem from="1692086462149" duration="44000" />
       <workItem from="1692086509116" duration="4994000" />
-      <workItem from="1692152740433" duration="10172000" />
+      <workItem from="1692152740433" duration="10560000" />
+      <workItem from="1692242491386" duration="8650000" />
+      <workItem from="1692322322554" duration="4868000" />
     </task>
     <task id="LOCAL-00001" summary="看起来像是搞好了">
       <created>1689045959887</created>
@@ -248,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692158005158</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="卧槽，顾客订单系统居然完成了&#10;这是我能干的事吗？">
+      <option name="closed" value="true" />
+      <created>1692164176855</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1692164176855</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +305,8 @@
     <MESSAGE value="除了订单相关都好了" />
     <MESSAGE value="用户下订单的交互部分好了&#10;剩下就是数据库操作部分&#10;感觉会很难，存个档先（）" />
     <MESSAGE value="优化了操作交互体验&#10;修复了登录bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化了操作交互体验&#10;修复了登录bug" />
+    <MESSAGE value="卧槽，顾客订单系统居然完成了&#10;这是我能干的事吗？" />
+    <MESSAGE value="beta版完成力（泪奔）&#10;太感动力（大哭）" />
+    <option name="LAST_COMMIT_MESSAGE" value="beta版完成力（泪奔）&#10;太感动力（大哭）" />
   </component>
 </project>

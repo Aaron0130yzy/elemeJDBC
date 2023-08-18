@@ -192,7 +192,7 @@ public class CustomerDao {
                     modify(customer.getUsername(), customer.getPassword(), customer.getSex(),customer.getAddress(), customer.getPhoneNumber(), idNumber);
                 }
                 case 4 -> {
-                    //todo 下订单
+                    //下订单
                     List<ProductPair> productPairs = new ArrayList<>();
                     List<Integer> notForSale = new ArrayList<>();
                     List<Integer> invalid = new ArrayList<>();
@@ -270,24 +270,37 @@ public class CustomerDao {
                         System.out.println("总价：￥" + decimalFormat.format(sum));
 
                         System.out.println("\n确认下单吗？输入y以确认，输入其它键取消：");
+                        boolean isSuccess = true;
                         if(sc.next().equals("y")){
                             Orders order2=oDao.create(idNumber);
-                            if(!(order2==null)) System.out.println("创建成功！订单id："+order2.getId());
-                            for(ProductPair pp : ready){
-                                if(!iDao.create(order2.getId(), pp.getId(),pp.getPrice(), pp.getQuantity())){
-                                    System.out.println("创建订单条目失败！");
-                                    break;
+                            if(order2!=null){
+                                System.out.println("创建成功！订单id："+order2.getId());
+                                for(ProductPair pp : ready){
+                                    if(!iDao.create(order2.getId(), pp.getId(),pp.getPrice(), pp.getQuantity())){
+                                        System.out.println("创建订单条目失败！");
+                                        isSuccess=false;
+                                        break;
+                                    }
                                 }
                             }
-                            System.out.println("您的订单已创建成功！按回车键继续...");
-                            sc.nextLine();
-                            sc.nextLine();
+                            if(isSuccess){
+                                System.out.println("您的订单已创建成功！");
+                            }
+                            else{
+                                if(oDao.delete(String.valueOf(order2.getId()))){
+                                    System.out.println("订单撤回成功");
+                                }
+                                else{
+                                    System.out.println("订单撤回失败！请联系管理员");
+                                }
+                            }
+                            System.out.println("按回车键继续...");
                         }
                         else{
                             System.out.println("操作已取消，按回车键继续...");
-                            sc.nextLine();
-                            sc.nextLine();
                         }
+                        sc.nextLine();
+                        sc.nextLine();
                     }
                     else{
                         System.out.println("当前订单无可下单商品！请返回重试！");

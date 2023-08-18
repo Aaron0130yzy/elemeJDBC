@@ -7,10 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ProductDao {
-    Product product=new Product();
 
     public List<Product> showAllProduct(){
         String sqlQueryLang = "SELECT  * FROM Product";
@@ -18,15 +16,15 @@ public class ProductDao {
         try{
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             while (rs.next()) {
-                Product Product = new Product();
-                Product.setId(rs.getInt("id"));
-                Product.setBusinessId(rs.getInt("businessId"));
-                Product.setName(rs.getString("name"));
-                Product.setPrice(rs.getBigDecimal("price"));
-                Product.setOnSale(rs.getBoolean("onSale"));
-                Product.setDescription(rs.getString("description"));
-                Product.setDiscount(rs.getBigDecimal("discount"));
-                lst.add(Product);
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setBusinessId(rs.getInt("businessId"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setOnSale(rs.getBoolean("onSale"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getBigDecimal("discount"));
+                lst.add(product);
             }
         } catch (SQLException e) {
             System.out.println("查询失败！"+e);
@@ -40,14 +38,14 @@ public class ProductDao {
         try{
             ResultSet rs = connection.executeQuery(sqlQueryLang);
             while (rs.next()) {
-                Product Product = new Product();
-                Product.setId(Integer.parseInt(rs.getString("id")));
-                Product.setName(rs.getString("name"));
-                Product.setPrice(rs.getBigDecimal("price"));
-                Product.setOnSale(rs.getBoolean("onSale"));
-                Product.setDescription(rs.getString("description"));
-                Product.setDiscount(rs.getBigDecimal("discount"));
-                lst.add(Product);
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setOnSale(rs.getBoolean("onSale"));
+                product.setDescription(rs.getString("description"));
+                product.setDiscount(rs.getBigDecimal("discount"));
+                lst.add(product);
             }
         } catch (SQLException e) {
             System.out.println("查询失败！"+e);

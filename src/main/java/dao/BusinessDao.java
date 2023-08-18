@@ -2,6 +2,7 @@ package dao;
 
 import entities.*;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class BusinessDao {
     Scanner sc = new Scanner(System.in);
     ProductDao pDao = new ProductDao();
     Product product = new Product();
+    ItemDao iDao = new ItemDao();
     public Business login(String id, String pwd) {
         String sqlQueryLang = "SELECT DISTINCT * FROM Business WHERE id ='" + id + "' AND password ='" + pwd + "'";
         Business business=null;
@@ -25,7 +27,6 @@ public class BusinessDao {
                 business.setAddress(rs.getString("address"));
                 business.setDescription(rs.getString("description"));
                 business.setPhoneNumber(rs.getString("phoneNumber"));
-                return business;
             }
         } catch (SQLException e) {
             return null;
@@ -123,7 +124,7 @@ public class BusinessDao {
             System.out.println("1. 查询自家菜品\t2. 添加菜品");
             System.out.println("3. 修改菜品信息\t4. 删除菜品");
             System.out.println("5. 修改商家信息\t6. 查询订单");
-            System.out.println("0. 退出");
+            System.out.println("7. 完成订单   \t0. 退出");
             int choice = sc.nextInt();
             switch (choice) {
                 case 1 -> {
@@ -200,6 +201,48 @@ public class BusinessDao {
                 }
                 case 6 -> {
                     //todo 查询订单
+                    System.out.println("输入1查询未完成订单，输入2查询已完成订单：");
+                    String choice2 = sc.next();
+                    if(choice2.equals("1")){
+                        List<Item> itemList =iDao.showOnesWaitingItem(id);
+                        System.out.println("条目id\t商品id\t数量\t价格");
+                        for(Item item : itemList){
+                            System.out.println(item.getId() + "\t" + item.getProductId() + "\t" + item.getAmount()
+                                    + "\t" + item.getPrice().multiply(BigDecimal.valueOf(item.getAmount())));
+                        }
+                        System.out.println("按回车键以继续...");
+                    }
+                    else if (choice2.equals("2")) {
+                        System.out.println("以下是最近20条已完成订单：");
+                        int i=0;
+                        List<Item> itemList =iDao.showOnesFinishedItem(id);
+                        System.out.println("条目id\t商品id\t数量\t价格");
+                        for(Item item : itemList){
+                            System.out.println(item.getId() + "\t" + item.getProductId() + "\t" + item.getAmount()
+                                    + "\t" + item.getPrice().multiply(BigDecimal.valueOf(item.getAmount())));
+                            if(i++>=20) break;
+                        }
+                        System.out.println("按回车键以继续...");
+
+                    }
+                    else{
+                        System.out.println("输入无效！\n按回车键继续...");
+                    }
+                    sc.nextLine();
+                    sc.nextLine();
+                }
+                case 7 -> {
+                    //完成订单
+                    System.out.println("请输入要完成的订单条目id：");
+                    String itemId=sc.next();
+                    if(iDao.finish(itemId,id)){
+                        System.out.println("id为"+itemId +"的订单条目已完成！\n按回车键继续...");
+                    }
+                    else{
+                        System.out.println("修改操作未完成！\n按回车键继续...");
+                    }
+                    sc.nextLine();
+                    sc.nextLine();
                 }
                 case 0 -> {
                     return;

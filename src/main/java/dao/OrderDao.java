@@ -19,7 +19,7 @@ public class OrderDao {
             while (rs.next()) {
                 order = new Orders();
                 order.setId(rs.getInt("id"));
-                // 找到新建的orderid
+                // 找到新建的orderId
             }
         }
         catch (Exception e){
@@ -28,4 +28,17 @@ public class OrderDao {
         }
         return order;
     }
+
+    public boolean delete(String id){
+        String sqlQueryLang = "DELETE FROM Orders WHERE id = "+id;
+        try{
+            connection.modify(sqlQueryLang);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
 }
